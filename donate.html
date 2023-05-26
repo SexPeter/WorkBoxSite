@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WorkBox - Donations</title>
+      <meta content="WorkBox - Donate" property="og:title" />
+    <meta content="Thiis is the donation page, feel free to donate." property="og:description" />
+    <meta content="workbox.great-site.net/legal.html" property="og:url" />
+    <meta content="https://cdn.discordapp.com/attachments/917102678583156776/1111047587139682414/logo-modified.png" property="og:image" />
+    <meta content="#3154bf" data-react-helmet="true" name="theme-color" />
+  <link rel="icon" href="https://cdn.discordapp.com/attachments/917102678583156776/1111047587139682414/logo-modified.png">
+  <style>
+    body {
+      background-color: #222222;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      opacity: 0;
+      animation: fade-in 1s ease-in-out forwards;
+    }
+    @keyframes fade-in {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 500px;
+      height: 60px;
+      background-color: #111111;
+      border-radius: 30px;
+      padding: 0 20px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+    .copy-button {
+      padding: 10px 20px;
+      background-color: #222222; /* Updated to a darker color */
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .copy-button:hover {
+      transform: scale(1.1);
+    }
+    .icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    .copied {
+      background-color: #28a745;
+    }
+    .address-label {
+      font-size: 14px;
+      color: #ccc;
+      text-align: center;
+    }
+    .address-text {
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="bar">
+      <img class="icon" src="https://static.vecteezy.com/system/resources/thumbnails/008/505/801/small_2x/bitcoin-logo-color-illustration-png.png" alt="Bitcoin Icon">
+      <div>
+        <div class="address-label">Bitcoin Address:</div>
+        <div id="btc-address" class="address-text">1BbiHwpWXDyFy35syAHFtcTopfkR7siXzj</div>
+      </div>
+      <button class="copy-button" onclick="copyToClipboard('btc-address', this)" onmouseout="resetCopyButton(this)">Copy</button>
+    </div>
+    <div class="bar">
+      <img class="icon" src="https://upload.wikimedia.org/wikipedia/commons/0/01/Ethereum_logo_translucent.svg" alt="Ethereum Icon">
+      <div>
+        <div class="address-label">Ethereum Address:</div>
+        <div id="eth-address" class="address-text">0x65Fb186BdA1e4a360B10C1588E49f3aDCf8818Db</div>
+      </div>
+      <button class="copy-button" onclick="copyToClipboard('eth-address', this)" onmouseout="resetCopyButton(this)">Copy</button>
+    </div>
+    <div class="bar">
+      <img class="icon" src="https://assets.coingecko.com/coins/images/28424/large/verselogo.png?1670461811" alt="VERSE Icon">
+      <div>
+        <div class="address-label">VERSE Address:</div>
+        <div id="verse-address" class="address-text">0x65Fb186BdA1e4a360B10C1588E49f3aDCf8818Db</div>
+      </div>
+      <button class="copy-button" onclick="copyToClipboard('verse-address', this)" onmouseout="resetCopyButton(this)">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    function copyToClipboard(elementId, button) {
+      var el = document.getElementById(elementId);
+      var address = el.innerText;
+      navigator.clipboard.writeText(address).then(function() {
+        button.innerText = 'Copied!';
+        button.disabled = true;
+        button.parentElement.classList.add('copied');
+        setTimeout(function() {
+          button.innerText = 'Copy';
+          button.disabled = false;
+          button.parentElement.classList.remove('copied');
+        }, 2000);
+      }, function() {
+        alert('Failed to copy address.');
+      });
+    }
+
+    function resetCopyButton(button) {
+      button.innerText = 'Copy';
+      button.disabled = false;
+      button.parentElement.classList.remove('copied');
+    }
+  </script>
+</body>
+</html>
